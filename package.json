@@ -4,7 +4,8 @@
   "description": "ethereum lottery (solidity)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "deploy": "node deploy.js"
   },
   "repository": {
     "type": "git",
