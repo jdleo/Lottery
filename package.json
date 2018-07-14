@@ -1,0 +1,19 @@
+{
+  "name": "lottery",
+  "version": "1.0.0",
+  "description": "ethereum lottery (solidity)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdleo/Lottery.git"
+  },
+  "author": "John Leonardo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdleo/Lottery/issues"
+  },
+  "homepage": "https://github.com/jdleo/Lottery#readme"
+}
