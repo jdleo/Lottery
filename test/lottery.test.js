@@ -80,4 +80,17 @@ describe('Lottery Contract', () => {
       assert(err);
     }
   });
+
+  it('makes sure only manager can pick a winner', async () => {
+    try {
+      //pick winner from account2 (manager is account0)
+      await lottery.methods.pickWinner().send({
+        from: accounts[2]
+      });
+      assert(false);
+    } catch (err) {
+      //there should be an error (non-manager trying to pick winner)
+      assert(err);
+    }
+  });
 });
