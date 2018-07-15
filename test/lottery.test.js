@@ -25,16 +25,45 @@ describe('Lottery Contract', () => {
   });
 
   it('allows a single account to enter lottery', async () => {
+    //attempt to enter from first test account
     await lottery.methods.enter().send({
       from: accounts[0],
       value: web3.utils.toWei('0.02', 'ether')
     });
 
+    //get list of players
     const players = await lottery.methods.getPlayers().call({
       from: accounts[0],
     });
 
+    //check if first player is equal to first account
     assert.equal(accounts[0], players[0]);
+
+    //check if players array is length of 1 (only one account entered)
     assert.equal(1, players.length);
+  });
+
+  it('allows multiple accounts to enter lottery', async () => {
+    //attempt to enter from accounts at indices [1,2,3]
+    await lottery.methods.enter().send({
+      from: accounts[1],
+      value: web3.utils.toWei('0.02', 'ether')
+    });
+    await lottery.methods.enter().send({
+      from: accounts[2],
+      value: web3.utils.toWei('0.02', 'ether')
+    });
+    await lottery.methods.enter().send({
+      from: accounts[3],
+      value: web3.utils.toWei('0.02', 'ether')
+    });
+
+    //get list of players
+    const players = await lottery.methods.getPlayers().call({
+      from: accounts[0],
+    });
+
+    //check if players array is length of 3 (we entered 3 test accounts)
+    assert.equal(3, players.length);
   });
 });
