@@ -4,8 +4,8 @@ const {interface, bytecode} = require('./compile');
 
 //connect to infura API with our rinkeby account
 const provider = new HDWalletProvider(
-  'faculty drink cradle october host captain reflect buyer toast album desert program',
-  'https://rinkeby.infura.io/UawBd2Uf27LzaCleE8j0'
+  'WALLET SEED (NMEMONIC)',
+  'INFURA API KEY'
 );
 
 const web3 = new Web3(provider);
@@ -19,6 +19,7 @@ const deploy = async () => {
     .deploy({data: bytecode})
     .send({gas: '1000000', from: accounts[0]});
 
+  console.log(interface);
   console.log('contract deployed to', res.options.address);
 };
 
