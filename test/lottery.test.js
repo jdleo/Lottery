@@ -93,4 +93,21 @@ describe('Lottery Contract', () => {
       assert(err);
     }
   });
+
+  it('allows players to enter, and one winner receives money', async () => {
+    //enter lottery from account0 (should win since only player in lotto)
+    await lottery.methods.enter().send({
+      from: accounts[0],
+      value: web3.utils.toWei('2', 'ether')
+    })
+
+    const balanceBeforeWin = await web3.eth.getBalance(accounts[0]);
+    await lottery.methods.pickWinner().send({from: accounts[0]});
+    const balanceAfterWin = await web3.eth.getBalance(accounts[0]);
+
+    const difference = balanceAfterWin - balanceBeforeWin;
+
+    //verify that difference is around 2 eth (lottery pot winnings)
+    assert(difference > web3.utils.toWei('1.8', 'ether'));
+  });
 });
