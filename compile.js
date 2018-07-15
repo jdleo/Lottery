@@ -9,7 +9,7 @@ const solc = require('solc');
 const lotteryPath = path.resolve(__dirname, 'contracts', 'lottery.sol');
 
 //read .sol source
-const source = fs.readFileSync(inboxPath, 'utf8');
+const source = fs.readFileSync(lotteryPath, 'utf8');
 
 //compile and export contract object
 module.exports = solc.compile(source, 1).contracts[':Lottery'];
