@@ -66,4 +66,18 @@ describe('Lottery Contract', () => {
     //check if players array is length of 3 (we entered 3 test accounts)
     assert.equal(3, players.length);
   });
+
+  it('restricts accounts from sending less than 0.01 ETH', async () => {
+    //attempt to enter from first test account with 0.0001 ETH
+    try {
+      await lottery.methods.enter().send({
+        from: accounts[0],
+        value: web3.utils.toWei('0.0001', 'ether')
+      });
+      assert(false);
+    } catch (err) {
+      //there should be an error (sending less than minimum ETH)
+      assert(err);
+    }
+  });
 });
